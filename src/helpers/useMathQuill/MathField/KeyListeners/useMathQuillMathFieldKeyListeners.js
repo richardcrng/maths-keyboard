@@ -1,6 +1,5 @@
 import _ from 'lodash';
 import React from 'react';
-import { deviceIsMobile } from '../../../../utils/web/utilsWeb';
 
 function useMathQuillMathFieldKeyListeners(ref, keydown) {
   React.useEffect(() => {
@@ -22,7 +21,7 @@ const defaultKeydown = [
 const writeKeyToMathField = ({ event, keydown, mathField }) => {
   const { key } = event;
   const keys = Array.isArray(keydown) ? keydown : defaultKeydown
-  if (deviceIsMobile() && keydown && _.includes(keys, key)) {
+  if (keydown && _.includes(keys, key)) {
     mathField.write(event.key)
   }
 }

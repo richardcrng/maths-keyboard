@@ -1,5 +1,4 @@
-import useMathQuillMathFieldInitiate from './initiate/useMathQuillMathFieldInitiate';
-// import useMathQuillMathFieldKeyListeners from './keyListeners/useMathQuillMathFieldKeyListeners';
+import useMathQuillMathFieldInitiate from './Initiate';
 
 function useMathQuillMathField(ref, { focus, latex, keydown } = {}) {
   useMathQuillMathFieldInitiate(ref, { focus, latex })

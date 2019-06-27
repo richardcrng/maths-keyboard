@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import useExecute from '../../../execute/useExecute';
+import useExecute from '../../../useExecute';
 
 function useMathQuillMathFieldInitiate(ref, { focus, latex } = {}) {
   // On first render:
