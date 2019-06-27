@@ -1,0 +1,26 @@
+.CalculatorHeader {
+  color: white;
+  /* height: 8vh; */
+  height: 50px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.CalculatorHeader p {
+  margin: 0
+}
+
+@media only screen and (min-width: 600px) {
+  .CalculatorHeader {
+    height: 80px;
+  }
+}
+/* 
+.CalculatorHeaderText {
+  position: absolute;
+  bottom: 10px;
+  left: 20px;
+} */

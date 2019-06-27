@@ -1,0 +1,61 @@
+.Calculator {
+  position: fixed;
+  top: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  background-color: #323232;
+  background: linear-gradient(65deg, #323232 50%, #383838 50%, #323232 100%);
+  transition: transform 0.5s ease;
+  z-index: 1750;
+}
+
+.CalculatorShow {
+  transform: translateX(0);
+}
+
+.CalculatorHide {
+  transform: translateX(100vw);
+}
+
+@media only screen and (min-width: 600px) and (min-height: 600px) {
+  .Calculator {
+    position: fixed;
+    top: auto;
+    right: calc(50% - 150px);
+    bottom: 0;
+    height: 580px;
+    width: 300px;
+    border-radius: 30px;
+    border: 5px solid #606060;
+    box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.2);
+  }
+
+  .CalculatorShow {
+    transform: translateY(0);
+  }
+
+  .CalculatorHide {
+    transform: translateY(600px);
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  .Calculator {
+    position: fixed;
+    top: 6rem;
+    bottom: auto;
+    right: calc(50% - 450px);
+    height: 580px;
+    width: 300px;
+    border-radius: 30px;
+    border: 5px solid #606060;
+    box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.2);
+  }
+
+  .CalculatorHide {
+    transform: translateX(0);
+  }
+}
