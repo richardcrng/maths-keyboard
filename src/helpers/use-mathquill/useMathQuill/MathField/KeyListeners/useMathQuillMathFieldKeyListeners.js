@@ -1,10 +1,13 @@
 import _ from 'lodash';
 import React from 'react';
+import useMathQuill from '../../useMathQuill';
 
 function useMathQuillMathFieldKeyListeners(ref, keydown) {
+  const MQ = useMathQuill()
+
   React.useEffect(() => {
     const domElement = ref.current
-    const mathField = window.MathQuill(domElement)
+    const mathField = MQ(domElement)
     domElement.addEventListener('keydown', event => writeKeyToMathField({ event, keydown, mathField }))
     return function cleanup() {
       domElement.removeEventListener('keydown', event => writeKeyToMathField({ event, keydown, mathField }))

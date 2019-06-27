@@ -4957,6 +4957,7 @@ function mathquill() {
     else MathQuill[key] = val;
   }(key, MQ1[key]));
 
+  return MathQuill
 }
 
 export default mathquill
