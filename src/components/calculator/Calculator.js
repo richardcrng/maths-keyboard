@@ -51,7 +51,6 @@ function Calculator(props) {
       <CalculatorContext.Provider
         value={{ displayRef, inputRef, onHide, showing: props.when }}
       >
-        <CalculatorHeader content={props.header} />
         <CalculatorDisplay ref={displayRef} latex={props.latex} />
         <CalculatorKeypad>
           {asCalculatorKeypad(props.layout || CALCULATOR_LAYOUT_STANDARD)}
