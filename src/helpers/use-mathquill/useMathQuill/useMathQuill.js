@@ -3,10 +3,15 @@ import MQContext from '../MQ/Context';
 
 function useMathQuill() {
   const contextMQ = React.useContext(MQContext)
-  const globalMQ = window.MQ
-  const globalMathQuill = window.MathQuill
+  if (contextMQ) return contextMQ
 
-  return contextMQ || globalMQ || globalMathQuill
+  const globalMQ = window.MQ
+  if (globalMQ) return globalMQ
+
+  const globalMathQuill = window.MathQuill.getInterface(2)
+  if (globalMathQuill) return globalMathQuill
+
+  return null
 }
 
 export default useMathQuill;
