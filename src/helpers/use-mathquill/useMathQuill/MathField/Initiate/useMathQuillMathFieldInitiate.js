@@ -2,7 +2,14 @@ import $ from 'jquery';
 import useExecute from '../../../../useExecute';
 import useMathQuill from '../../useMathQuill';
 
-function useMathQuillMathFieldInitiate(ref, { focus, latex } = {}) {
+/**
+ * 
+ * @param {React.Ref} ref - React ref for targeted HTML element to initiate MathField at
+ * @param {Object} config
+ * @param {Boolean} [config.focus = false] - If true, focuses on MathField after initiating
+ * @param {String} [config.latex] - Latex string to initiate MathField with
+ */
+function useMathQuillMathFieldInitiate(ref, { focus = false, latex } = {}) {
   const MQ = useMathQuill()
 
   // On first render:
@@ -14,7 +21,7 @@ function useMathQuillMathFieldInitiate(ref, { focus, latex } = {}) {
     const mathField = transformElementIntoMathField(MQ, ref);
     if (latex) mathField.latex(latex)
     if (focus) mathField.focus()
-  }, [])
+  }, [MQ])
 }
 
 const transformElementIntoMathField = (MQ, ref) => {
