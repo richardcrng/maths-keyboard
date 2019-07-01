@@ -10,11 +10,14 @@ import CalculatorInput from './input/CalculatorInput';
 import useSetWindow from '../../helpers/hooks/setWindow/useSetWindow';
 import useDeviceInfo from '../../helpers/hooks/deviceInfo/useDeviceInfo';
 import { CalculatorBindingContext } from './binding/CalculatorBinding';
+import useMathQuill from '../../helpers/use-mathquill';
 
 export const CalculatorContext = React.createContext()
 CalculatorContext.displayName = "CalculatorContext"
 
 function Calculator(props) {
+  const MQ = useMathQuill()
+
   const binding = React.useContext(CalculatorBindingContext)
   const createdRef = React.useRef()
   const displayRef = _.get(binding, 'calculator.displayRef', props.displayRef || createdRef)
@@ -40,7 +43,7 @@ function Calculator(props) {
 
   // Clear when inputRefs array updates
   React.useEffect(() => {
-    const mathField = window.MathQuill(displayRef.current)
+    const mathField = MQ(displayRef.current)
     if (mathField) mathField.latex('')
   }, [binding.inputRefs.array]) // eslint-disable-line react-hooks/exhaustive-deps
 

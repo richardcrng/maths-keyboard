@@ -1,5 +1,6 @@
 import React from 'react';
 import MQContext from '../MQ/Context';
+import mathquill from '../mathquill';
 
 function useMathQuill() {
   const contextMQ = React.useContext(MQContext)
@@ -11,7 +12,7 @@ function useMathQuill() {
   const globalMathQuill = window.MathQuill.getInterface(2)
   if (globalMathQuill) return globalMathQuill
 
-  return null
+  return mathquill().getInterface(2)
 }
 
 export default useMathQuill;
