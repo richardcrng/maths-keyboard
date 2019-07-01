@@ -1,3 +1,7 @@
-import CalculatorBinding from "./CalculatorBinding";
+import CalculatorBinding, { CalculatorBindingContext } from "./CalculatorBinding";
+
+export {
+  CalculatorBindingContext
+}
 
 export default CalculatorBinding
