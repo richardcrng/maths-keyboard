@@ -1,8 +1,7 @@
 import _ from 'lodash';
-
 import React from 'react';
 import CalculatorKeypadKeys from '../../keypad/keys/CalculatorKeypadKeys';
-import { parsePartsWithKatex } from '../../../../helpers/utils/katex/utilsKatex';
+import { parseWithKatex } from '../../../../helpers/react-maths';
 
 export const asCalculatorKeypad = arr => {
   const totalWeightedHeight = sumOfWeightedHeights(arr)
@@ -50,7 +49,7 @@ const asCalculatorKeypadKeysItem = (keyObj, totalWeightedWidth) => {
   rest.weightedWidth = weightedWidth
 
   if (latex) {
-    return <CalculatorKeypadKeys.Item html={parsePartsWithKatex(latex)} key={latex} {...rest} />
+    return <CalculatorKeypadKeys.Item html={parseWithKatex(latex)} key={latex} {...rest} />
   } else if (Icon) {
     return <CalculatorKeypadKeys.Item render={() => <Icon size={25} />} key={Icon} {...rest} />
   } else if (text) {

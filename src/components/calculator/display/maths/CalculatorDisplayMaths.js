@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
-import useMathQuillMathField from '../../../../helpers/hooks/mathquill/mathfield/useMathQuillMathField';
 import { CalculatorContext } from '../../Calculator';
+import { useMathQuillMathField } from '../../../../helpers/use-mathquill';
 
 function CalculatorDisplayMaths(props, ref) {
   const { inputRef } = React.useContext(CalculatorContext)

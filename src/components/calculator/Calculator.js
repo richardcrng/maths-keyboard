@@ -1,14 +1,11 @@
 import _ from 'lodash';
 import React from 'react';
-import CalculatorHeader from './header/CalculatorHeader';
 import CalculatorDisplay from './display/CalculatorDisplay';
 import classes from './Calculator.module.css';
 import CalculatorKeypad from './keypad/CalculatorKeypad';
 import { CALCULATOR_LAYOUT_STANDARD } from './layout/standard/CalculatorLayoutStandard';
 import { asCalculatorKeypad } from './layout/utils/utilsCalculatorLayout';
 import CalculatorInput from './input/CalculatorInput';
-import useSetWindow from '../../helpers/hooks/setWindow/useSetWindow';
-import useDeviceInfo from '../../helpers/hooks/deviceInfo/useDeviceInfo';
 import { CalculatorBindingContext } from './binding/CalculatorBinding';
 import useMathQuill from '../../helpers/use-mathquill';
 
@@ -22,8 +19,6 @@ function Calculator(props) {
   const createdRef = React.useRef()
   const displayRef = _.get(binding, 'calculator.displayRef', props.displayRef || createdRef)
 
-  const { mobile } = useDeviceInfo()
-  const setWindow = useSetWindow()
   
   // Update calculator binding's knowledge of
   //   whether the calculator is showing
@@ -33,13 +28,6 @@ function Calculator(props) {
       setShowing(props.when)
     }
   }, [props.when, showing, setShowing])
-  
-  // Set window as fullscreen when on mobile and showing
-  React.useEffect(() => {
-    if (mobile && props.when) {
-      setWindow.orientation('fullscreen', 'portrait')
-    }
-  }, [mobile, props.when, setWindow])
 
   // Clear when inputRefs array updates
   React.useEffect(() => {
@@ -70,7 +58,6 @@ const className = props => {
 }
 
 Calculator.Display = CalculatorDisplay
-Calculator.Header = CalculatorHeader
 Calculator.Input = CalculatorInput
 Calculator.Keypad = CalculatorKeypad
 

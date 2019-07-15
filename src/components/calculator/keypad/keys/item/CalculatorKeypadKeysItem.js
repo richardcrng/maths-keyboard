@@ -2,10 +2,10 @@ import _ from 'lodash';
 import React from 'react';
 import { CalculatorKeypadKeysContext } from '../CalculatorKeypadKeys';
 import classes from './CalculatorKeypadKeysItem.module.css';
-import InnerHTMLspan from '../../../../innerHtml/span/InnerHTMLspan';
 import { CalculatorContext } from '../../../Calculator';
 import { CalculatorBindingContext } from '../../../binding/CalculatorBinding';
 import { pctWidth, updateMathFields, postUpdateEffects } from './utils';
+import InnerHTML from '../../../../../helpers/react-maths/InnerHTML';
 
 function CalculatorKeypadKeysItem(props) {
   const { calculator } = React.useContext(CalculatorBindingContext)
@@ -51,7 +51,7 @@ function CalculatorKeypadKeysItem(props) {
     >
       <span className={classes.CalculatorKeypadKeysItemContent}>
         {props.content}
-        {props.html && <InnerHTMLspan html={props.html} />}
+        {props.html && <InnerHTML element='span' html={props.html} />}
         {ToRender && <ToRender />}
       </span>
     </button>

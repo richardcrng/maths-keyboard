@@ -1,6 +1,6 @@
 import _ from 'lodash';
-import { executeIfFunction } from '../../../../../helpers/utils/component/utilsComponent';
-import { atIndex } from '../../../../../helpers/utils/array/utilsArray';
+import { atIndex } from '../../../../../helpers/array-utils';
+import { executeIfFunction } from '../../../../../helpers/component-utils';
 
 export const postUpdateEffects = ({ calculator, displayMathField, inputRef, onHide, thenDismiss, thenSubmit }) => {
   if (thenSubmit && calculator.showing) {

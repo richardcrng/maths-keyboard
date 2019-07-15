@@ -2,8 +2,8 @@ import _ from 'lodash';
 import React from 'react';
 import CalculatorInputLabel from './label/CalculatorInputLabel';
 import CalculatorInputBox from './box/CalculatorInputBox';
-import { executeIfFunction } from '../../../helpers/utils/component/utilsComponent';
 import { CalculatorBindingContext } from '../binding/CalculatorBinding';
+import { executeIfFunction } from '../../../helpers/component-utils';
 
 function CalculatorInput({ className, id: passedId, inputRef: passedInputRef, label, onChange, onFocus, onSubmit, style }) {
   const randId = React.useState(Math.ceil(Math.random() * 1000))

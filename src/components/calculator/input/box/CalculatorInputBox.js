@@ -1,5 +1,5 @@
 import React from 'react';
-import useMathQuillMathField from '../../../../helpers/hooks/mathquill/mathfield/useMathQuillMathField';
+import { useMathQuillMathField } from '../../../../helpers/use-mathquill';
 
 function CalculatorInputBox(props, ref) {
   const createdRef = React.useRef()
