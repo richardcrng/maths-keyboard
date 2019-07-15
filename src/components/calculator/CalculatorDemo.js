@@ -1,9 +1,8 @@
 import React from 'react';
-import './App.css';
-import CalculatorBinding from './components/calculator/binding/CalculatorBinding';
-import CalculatorInput from './components/calculator/input/CalculatorInput';
+import CalculatorInput from './input/CalculatorInput';
+import CalculatorBinding from './binding/CalculatorBinding';
 
-function App() {
+function CalculatorDemo(props) {
   return (
     <CalculatorBinding onChange={(...args) => console.log("Handling a change", args)} onSubmit={(...args) => console.log("Handling a submit", args)} >
       <div><CalculatorInput label="$x^2 =$" calculator={{ show: false }} /></div>
@@ -15,7 +14,7 @@ function App() {
         }}
       />
     </CalculatorBinding>
-  );
+  )
 }
 
-export default App;
+export default CalculatorDemo;
