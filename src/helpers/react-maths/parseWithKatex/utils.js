@@ -90,8 +90,6 @@ const splitAndFlattenArrayByExpression = (array, expression, delimiter) => (
 const standardKatexParse = string => {
   if (string.match(regExp$) || string.match(regExp$$)) {
     return katexify(string.replace(/\$/g, ''))
-  } else if (string.match(regExpLatexEnv)) {
-    return katexify(string)
   } else {
     return string
   }

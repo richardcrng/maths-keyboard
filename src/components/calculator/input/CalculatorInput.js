@@ -5,11 +5,11 @@ import CalculatorInputBox from './box/CalculatorInputBox';
 import { executeIfFunction } from '../../../helpers/utils/component/utilsComponent';
 import { CalculatorBindingContext } from '../binding/CalculatorBinding';
 
-function CalculatorInput(props) {
+function CalculatorInput({ className, id: passedId, inputRef: passedInputRef, label, onChange, onFocus, onSubmit, style }) {
   const randId = React.useState(Math.ceil(Math.random() * 1000))
   const binding = React.useContext(CalculatorBindingContext) || {}
   const createdRef = React.useRef()
-  const inputRef = props.inputRef || createdRef
+  const inputRef = passedInputRef || createdRef
 
   // Add instance's inputRef to the array in CalculatorBindingContext
   //    if it is missing - this should run every time
@@ -29,25 +29,25 @@ function CalculatorInput(props) {
 
   // Update CalculatorBinding's onChange and onSubmit methods
   React.useEffect(() => {
-    if (binding.calculator.onChange !== props.onChange && props.onChange) {
-      binding.calculator.setOnChange(() => props.onChange)
+    if (binding.calculator.onChange !== onChange && onChange) {
+      binding.calculator.setOnChange(() => onChange)
     }
-    if (binding.calculator.onSubmit !== props.onSubmit && props.onSubmit) {
-      binding.calculator.setOnSubmit(() => props.onSubmit)
+    if (binding.calculator.onSubmit !== onSubmit && onSubmit) {
+      binding.calculator.setOnSubmit(() => onSubmit)
     }
   })
 
   const handleFocus = () => {
-    executeIfFunction(props.onFocus)
+    executeIfFunction(onFocus)
     executeIfFunction(binding.inputRefs.onFocus)
     executeIfFunction(binding.inputRefs.activate, inputRef)
     executeIfFunction(binding.calculator.setHeader, label)
   }
 
-  const id = props.id ? props.id.split('-')[1] : randId
+  const id = passedId ? passedId.split('-')[1] : randId
 
   return (
-    <div className={props.className} style={props.style}>
+    <div className={className} style={style}>
       <CalculatorInputLabel label={label} />
       <CalculatorInputBox
         header={label}

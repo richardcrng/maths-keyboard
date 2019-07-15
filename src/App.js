@@ -1,25 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import CalculatorBinding from './components/calculator/binding/CalculatorBinding';
+import CalculatorInput from './components/calculator/input/CalculatorInput';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <CalculatorBinding onChange={(...args) => console.log("Handling a change", args)} onSubmit={(...args) => console.log("Handling a submit", args)} >
+      <div><CalculatorInput label="$x^2 =$" calculator={{ show: false }} /></div>
+      <CalculatorInput
+        label="Factorise $y^{3} - y$"
+        calculator={{
+          show: false,
+          style: { position: "fixed", top: "0px", left: "0px" }
+        }}
+      />
+    </CalculatorBinding>
   );
 }
 
