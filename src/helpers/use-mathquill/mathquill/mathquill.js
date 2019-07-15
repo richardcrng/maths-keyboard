@@ -8,7 +8,7 @@
  * one at http://mozilla.org/MPL/2.0/.
  */
 
-function mathquill(global) {
+(function () {
 
   var jQuery = window.jQuery,
     undefined,
@@ -1811,7 +1811,6 @@ function mathquill(global) {
       case 'MQ-Backspace': ctrlr.backspace(); break;
       case 'MQ-Delete': ctrlr.deleteForward(); break;
       case 'MQ-Ctrl-A':
-        console.log("RUNNING THIS")
         ctrlr.notify('move').cursor.insAtRightEnd(ctrlr.root);
         while (cursor[L]) ctrlr.selectLeft();
         break;
@@ -1940,7 +1939,7 @@ function mathquill(global) {
     _.ctrlDeleteDir = function (dir) {
       prayDirection(dir);
       var cursor = this.cursor;
-      if (!cursor[L] || cursor.selection) return global.ctrlr.deleteDir();
+      if (!cursor[L] || cursor.selection) return ctrlr.deleteDir();
 
       this.notify('edit');
       Fragment(cursor.parent.ends[L], cursor[L]).remove();
@@ -2645,7 +2644,7 @@ function mathquill(global) {
           // skip matching top-level close tag and all tag pairs in between
           var nesting = 1;
           do {
-            i += 1; token = tokens[i];
+            i += 1, token = tokens[i];
             pray('no missing close tags', token);
             // close tags
             if (token.slice(0, 2) === '</') {
@@ -3194,7 +3193,7 @@ function mathquill(global) {
           MathBlock.prototype.write.call(this, cursor, ch);
         else if (this.isEmpty()) {
           cursor.insRightOf(this.parent);
-          this.parent.deleteTowards(global.dir, cursor);
+          this.parent.deleteTowards(dir, cursor);
           VanillaSymbol('\\$', '$').createLeftOf(cursor.show());
         }
         else if (!cursor[R])
@@ -3730,7 +3729,7 @@ function mathquill(global) {
         // sequence of letters
         var str = this.letter, l = cursor[L], i = 1;
         while (l instanceof Letter && i < maxLength) {
-          str = l.letter + str; l = l[L]; i += 1;
+          str = l.letter + str, l = l[L], i += 1;
         }
         // check for an autocommand, going thru substrings longest to shortest
         while (str.length) {
@@ -4714,7 +4713,7 @@ function mathquill(global) {
         }
       }
       else {
-        brack = this; side = brack.side;
+        brack = this, side = brack.side;
         if (brack.replacedFragment) brack.side = 0; // wrapping seln, don't be one-sided
         else if (cursor[-side]) { // elsewise, auto-expand so ghost is at far end
           brack.replaces(Fragment(cursor[-side], cursor.parent.ends[-side], side));
@@ -4931,13 +4930,13 @@ function mathquill(global) {
     };
     _.parser = function () {
       var self = this;
-      global.string = Parser.string; global.regex = Parser.regex; global.succeed = Parser.succeed;
-      return global.string('{').then(global.regex(/^[a-z][a-z0-9]*/i)).skip(global.string('}'))
+      string = Parser.string, regex = Parser.regex, succeed = Parser.succeed;
+      return string('{').then(regex(/^[a-z][a-z0-9]*/i)).skip(string('}'))
         .then(function (name) {
           // the chars allowed in the optional data block are arbitrary other than
           // excluding curly braces and square brackets (which'd be too confusing)
-          return global.string('[').then(global.regex(/^[-\w\s]*/)).skip(global.string(']'))
-            .or(global.succeed()).map(function (data) {
+          return string('[').then(regex(/^[-\w\s]*/)).skip(string(']'))
+            .or(succeed()).map(function (data) {
               return self.setOptions(EMBEDS[name](data));
             })
             ;
@@ -4957,7 +4956,4 @@ function mathquill(global) {
     else MathQuill[key] = val;
   }(key, MQ1[key]));
 
-  return MathQuill
-}
-
-export default mathquill
+}());
