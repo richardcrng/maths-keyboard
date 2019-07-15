@@ -2,7 +2,6 @@ import _ from 'lodash';
 import React from 'react';
 import CalculatorInputLabel from './label/CalculatorInputLabel';
 import CalculatorInputBox from './box/CalculatorInputBox';
-import { parsePartsWithKatex } from '../../../helpers/utils/katex/utilsKatex';
 import { executeIfFunction } from '../../../helpers/utils/component/utilsComponent';
 import { CalculatorBindingContext } from '../binding/CalculatorBinding';
 
@@ -37,8 +36,6 @@ function CalculatorInput(props) {
       binding.calculator.setOnSubmit(() => props.onSubmit)
     }
   })
-
-  const label = parsePartsWithKatex(props.label)
 
   const handleFocus = () => {
     executeIfFunction(props.onFocus)

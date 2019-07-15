@@ -1,10 +1,10 @@
 import React from 'react';
-import InnerHTML from '../../../../helpers/react-maths/InnerHTML';
+import Maths from '../../../../helpers/react-maths';
 
 function CalculatorInputLabel(props) {
   if (props.label) {
     return (
-      <InnerHTML
+      <Maths
         element='span'
         className="mr-2"
         html={props.label}
